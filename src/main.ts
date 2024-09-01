@@ -9,7 +9,7 @@ const db = new TypeormDatabase();
 
 async function main() {
     // Calculate the block number for X days ago
-    const blockNumberXDaysAgo = await getBlockNumberXDaysAgo(1);
+    const blockNumberXDaysAgo = await getBlockNumberXDaysAgo(7);
 
     const processor = new EvmBatchProcessor()
         .setGateway("https://v2.archive.subsquid.io/network/base-mainnet")
