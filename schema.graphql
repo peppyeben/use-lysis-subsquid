@@ -1,0 +1,138 @@
+# NFT Marketplace Analytics Dashboard
+type Sale @entity {
+    id: ID!
+    buyer: String! @index
+    seller: String! @index
+    tokenAddress: String! @index
+    tokenId: BigInt! @index
+    salePrice: BigInt!
+    paymentCoin: String! @index
+    timestamp: BigInt!
+    isERC721: Boolean!
+}
+
+type Collection @entity {
+    id: ID!
+    address: String! @index
+    name: String
+    totalSales: BigInt!
+    totalVolume: BigInt!
+    floorPrice: BigInt
+}
+
+# Banned Account Tracker
+type BannedAccount @entity {
+    id: ID!
+    account: String! @index
+    tokenAddress: String! @index
+    banTimestamp: BigInt!
+    isCurrentlyBanned: Boolean!
+}
+
+type BanEvent @entity {
+    id: ID!
+    account: String! @index
+    tokenAddress: String! @index
+    timestamp: BigInt!
+    eventType: String! # "ban" or "unban"
+}
+
+# Payment Method Whitelist Manager
+type PaymentMethodWhitelist @entity {
+    id: ID!
+    whitelistId: BigInt! @index
+    owner: String! @index
+    name: String!
+    paymentMethods: [String!]!
+}
+
+type PaymentMethodEvent @entity {
+    id: ID!
+    whitelistId: BigInt! @index
+    paymentMethod: String! @index
+    timestamp: BigInt!
+    eventType: String! # "add" or "remove"
+}
+
+# Collection-Level Pricing Analyzer
+type CollectionPricing @entity {
+    id: ID!
+    tokenAddress: String! @index
+    floorPrice: BigInt!
+    ceilingPrice: BigInt!
+    lastUpdated: BigInt!
+}
+
+type TokenPricing @entity {
+    id: ID!
+    tokenAddress: String! @index
+    tokenId: BigInt! @index
+    floorPrice: BigInt!
+    ceilingPrice: BigInt!
+    lastUpdated: BigInt!
+}
+
+# Royalty and Bounty Tracker
+type CollectionRoyalty @entity {
+    id: ID!
+    tokenAddress: String! @index
+    royaltyBackfillNumerator: Int!
+    royaltyBackfillReceiver: String!
+    royaltyBountyNumerator: Int!
+    exclusiveBountyReceiver: String
+    lastUpdated: BigInt!
+}
+
+# Trusted Channel Monitor
+type TrustedChannel @entity {
+    id: ID!
+    tokenAddress: String! @index
+    channelAddress: String! @index
+    isCurrentlyTrusted: Boolean!
+    lastUpdated: BigInt!
+}
+
+type ChannelEvent @entity {
+    id: ID!
+    tokenAddress: String! @index
+    channelAddress: String! @index
+    timestamp: BigInt!
+    eventType: String! # "add" or "remove"
+}
+
+# Order Cancellation Analyzer
+type CancellationEvent @entity {
+    id: ID!
+    account: String! @index
+    nonce: BigInt
+    orderDigest: String
+    timestamp: BigInt!
+    cancellationType: String! # "masterNonce", "singleNonce", or "orderDigest"
+}
+
+# ERC1155 vs ERC721 Trading Comparison Tool
+type TokenStandard @entity {
+    id: ID!
+    tokenAddress: String! @index
+    isERC721: Boolean!
+    totalSales: BigInt!
+    totalVolume: BigInt!
+}
+
+# Cosigner Activity Monitor
+type CosignerEvent @entity {
+    id: ID!
+    cosignerAddress: String! @index
+    destroyedAt: BigInt!
+}
+
+# Collection Payment Settings Analyzer
+type CollectionPaymentSettings @entity {
+    id: ID!
+    tokenAddress: String! @index
+    paymentMethodWhitelistId: BigInt
+    constrainedPricingPaymentMethod: String
+    blockTradesFromUntrustedChannels: Boolean!
+    blockBannedAccounts: Boolean!
+    lastUpdated: BigInt!
+}
