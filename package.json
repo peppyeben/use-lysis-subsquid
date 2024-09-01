@@ -21,7 +21,7 @@
         "docker-start": "docker compose up -d",
         "gen-mig": "npx squid-typeorm-migration generate",
         "apply-mig": "npx squid-typeorm-migration apply",
-        "gen-abi": "npx squid-evm-typegen src/abi 0x9A1D00bEd7CD04BCDA516d721A596eb22Aac6834#magiceden --etherscan-api https://api.basescan.org/api --clean",
+        "gen-abi": "npx squid-evm-typegen src/abi 0x9A1D00bEd7CD04BCDA516d721A596eb22Aac6834#magiceden 0x4cCb0BB02FCABA27e82a56646E81d8c5bC4119a5#basename --etherscan-api https://api.basescan.org/api --clean",
         "start": "node -r dotenv/config lib/main.js",
         "serve": "npx squid-graphql-server"
     }

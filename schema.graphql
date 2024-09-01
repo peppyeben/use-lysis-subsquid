@@ -136,3 +136,61 @@ type CollectionPaymentSettings @entity {
     blockBannedAccounts: Boolean!
     lastUpdated: BigInt!
 }
+
+# BASENAME
+
+# NameRegistered event
+type NameRegisteredEvent @entity {
+    name: String! @index
+    label: String!
+    owner: String! @index
+    expires: BigInt!
+}
+
+# NameRenewed event
+type NameRenewedEvent @entity {
+    name: String! @index
+    label: String!
+    expires: BigInt!
+}
+
+# DiscountApplied event
+type DiscountAppliedEvent @entity {
+    registrant: String!
+    discountKey: String!
+}
+
+# ETHPaymentProcessed event
+type ETHPaymentProcessedEvent @entity {
+    payee: String! @index
+    price: BigInt!
+}
+
+# DiscountUpdated event
+type DiscountUpdatedEvent @entity {
+    discountKey: String!
+    details: DiscountDetails!
+}
+
+# DiscountDetails type (used in DiscountUpdatedEvent)
+type DiscountDetails @entity {
+    active: Boolean!
+    discountValidator: String!
+    key: String!
+    discount: BigInt!
+}
+
+# PriceOracleUpdated event
+type PriceOracleUpdatedEvent @entity {
+    newPrices: String!
+}
+
+# ReverseRegistrarUpdated event
+type ReverseRegistrarUpdatedEvent @entity {
+    newReverseRegistrar: String!
+}
+
+# PaymentReceiverUpdated event
+type PaymentReceiverUpdatedEvent @entity {
+    newPaymentReceiver: String!
+}
