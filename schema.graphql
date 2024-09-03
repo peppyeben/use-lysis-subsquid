@@ -145,6 +145,7 @@ type NameRegisteredEvent @entity {
     label: String!
     owner: String! @index
     expires: BigInt!
+    timestamp: BigInt
 }
 
 # NameRenewed event
@@ -152,6 +153,7 @@ type NameRenewedEvent @entity {
     name: String! @index
     label: String!
     expires: BigInt!
+    timestamp: BigInt
 }
 
 # DiscountApplied event

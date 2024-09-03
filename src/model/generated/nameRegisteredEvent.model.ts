@@ -22,4 +22,7 @@ export class NameRegisteredEvent {
 
     @BigIntColumn_({nullable: false})
     expires!: bigint
+
+    @BigIntColumn_({nullable: true})
+    timestamp!: bigint | undefined | null
 }

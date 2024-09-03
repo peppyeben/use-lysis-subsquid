@@ -1,5 +1,14 @@
 version: "3"
+
 services:
+  app:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
   db:
     image: postgres:15
     environment:
@@ -7,3 +16,26 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "${DB_PORT}:5432"
+
+  runner:
+    build:
+      context: .
+    entrypoint: /bin/sh
+    command: -c "yarn gen-mig && yarn apply-mig && yarn compile"
+    depends_on:
+      - db
+    environment:
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_PASSWORD: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+
+# version: "3"
+# services:
+#   db:
+#     image: postgres:15
+#     environment:
+#       POSTGRES_DB: "${DB_NAME}"
+#       POSTGRES_PASSWORD: postgres
+#     ports:
+#       - "${DB_PORT}:5432"

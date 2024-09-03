@@ -107,6 +107,9 @@ async function main() {
                             label,
                             owner,
                             expires,
+                            timestamp: BigInt(
+                                new Date(blockTimestamp * 1000).getTime()
+                            ),
                         })
                     );
                 }
@@ -119,6 +122,9 @@ async function main() {
                             name,
                             label,
                             expires,
+                            timestamp: BigInt(
+                                new Date(blockTimestamp * 1000).getTime()
+                            ),
                         })
                     );
                 }
