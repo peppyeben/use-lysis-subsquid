@@ -27,7 +27,7 @@ This command will read the `package.json` file and install all the required pack
 
 ### 2. Generate Code
 
-Next, generate models based on the schema (schema.graphql):
+Next, generate models based on the schema (`schema.graphql`):
 
 ```bash
 yarn gen
@@ -62,7 +62,7 @@ To set up the Docker environment, run:
 yarn docker-start
 ```
 
-Ensure that Docker is installed and running on your system (Windows, macOS, or Linux). This command will start the Docker containers as specified in the Docker configuration (docker-compose.yaml).
+Ensure that Docker is installed and running on your system (Windows, macOS, or Linux). This command will start the Docker containers as specified in the Docker configuration (`docker-compose.yaml`).
 
 ### 5. Generate Migrations
 
